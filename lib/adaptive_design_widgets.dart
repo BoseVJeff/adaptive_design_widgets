@@ -1,7 +1,4 @@
 library adaptive_design_widgets;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/design_ancestor.dart';
+export 'src/consts/design_system.dart';
