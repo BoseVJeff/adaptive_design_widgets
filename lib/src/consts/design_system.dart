@@ -51,7 +51,7 @@ enum DesignSystem {
   /// Linux: [DesignSystem.yaru]
   ///
   /// Operating system is determined by [Platform.operatingSystem]
-  factory DesignSystem.platform() {
+  static DesignSystem get platform {
     String os = Platform.operatingSystem;
     switch (os) {
       case 'fuchsia':
