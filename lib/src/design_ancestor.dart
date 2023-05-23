@@ -1,104 +1,95 @@
 import 'package:adaptive_design_widgets/src/consts/design_system.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart' as material
+    show Theme; // Only for doc comments
 
-/// Applies a paticular [DesignSystem] to its descendent widgets.
+/// Internal Implementation.
 ///
-/// All adaptive widgets listen to the [DesignSystem] set here to decide which widget they should display.
-class DesignAncestor extends StatefulWidget {
-  const DesignAncestor({
+/// Done in this manner as this reflects the structure used in [material.Theme].
+///
+/// Uses a [ValueNotifier] as this allows for better DX by explicitly forcing a [ValueListenableBuilder]. Verbosity can be avoided by using an interface that implements it for all classes that need it.
+interface class _DesignData extends InheritedWidget {
+  _DesignData({
     super.key,
-    this.designSystem = DesignSystem.material,
-    required this.child,
-  });
-
-  /// The [DesignSystem] used by descendent widgets
-  ///
-  /// If not specified, the default value is [DesignSystem.material].
-  final DesignSystem designSystem;
-
-  final Widget child;
-
-  /// Set the [DesignSystem] for the nearest [DesignAncestor] if it exists. Does noting otherwise.
-  ///
-  /// This method should be used mainly for tests and other smaller demo purposes. This is beacuse it uses the inefficent [BuildContext.findAncestorStateOfType] to trigger a [State.setState] in the corresponding state class.
-  /// For proper use, consider supplying the [DesignSystem] from a parent [StatefulWidget] or using another state management system.
-  static void setDesignSystem(
-    BuildContext context,
-    DesignSystem designSystem,
-  ) {
-    State<DesignAncestor>? ancestor =
-        context.findAncestorStateOfType<State<DesignAncestor>>();
-    if (ancestor != null) {
-      (ancestor as _DesignAncestorState).setDesignSystem(designSystem);
-      return;
-    } else {
-      return;
+    required DesignSystem? intitialDesignSystem,
+    required super.child,
+  }) {
+    if (intitialDesignSystem != null) {
+      _designSystemNotifier.value = intitialDesignSystem;
     }
   }
 
+  final ValueNotifier<DesignSystem> _designSystemNotifier =
+      ValueNotifier(DesignSystem.platform);
+
   @override
-  State<DesignAncestor> createState() => _DesignAncestorState();
+  bool updateShouldNotify(_DesignData oldWidget) {
+    // Only update if the design system has changed
+    return oldWidget._designSystemNotifier.value != _designSystemNotifier.value;
+    // return true;
+  }
 }
 
-class _DesignAncestorState extends State<DesignAncestor> {
-  late DesignSystem system;
+/// Applies a [DesignSystem] to descendent widgets.
+///
+/// To update the [DesignSystem], use the [DesignAncestor.setDesignSystemOf] method.
+///
+/// To build a widget that updates in response to changes in [DesignSystem], use a [ValueListenableBuilder], using [DesignAncestor.valueNotifierOf] as the [ValueNotifier].
+/// NOTE: If you do not care about having the value be automatically updated, either because it is handled elsewhere or because it is not needed, use [DesignSystem.of] instead.
+interface class DesignAncestor extends StatelessWidget {
+  const DesignAncestor({
+    super.key,
+    this.initialDesignSystem,
+    required this.child,
+  });
 
-  @override
-  void initState() {
-    super.initState();
+  final DesignSystem? initialDesignSystem;
+  final Widget child;
 
-    // Set initial state to the one defined by user
-    system = widget.designSystem;
+  static void setDesignSystemOf(
+    BuildContext context,
+    DesignSystem newDesignSystem,
+  ) {
+    final _DesignData? inheritedWidgetOfExactType =
+        context.getInheritedWidgetOfExactType<_DesignData>();
+    assert(
+      inheritedWidgetOfExactType != null,
+      'No DesignAncestor found in context. Consider supplying a D2 ancestor higher in the widget tree',
+    );
+    if (inheritedWidgetOfExactType != null) {
+      debugPrint('Setting design system to $newDesignSystem');
+      inheritedWidgetOfExactType._designSystemNotifier.value = newDesignSystem;
+    }
+    return;
   }
 
-  void setDesignSystem(DesignSystem newDesignSystem) {
-    setState(() {
-      system = newDesignSystem;
-    });
-    return;
+  static DesignSystem of(BuildContext context) {
+    var inheritedWidgetOfExactType =
+        context.dependOnInheritedWidgetOfExactType<_DesignData>();
+    assert(
+      inheritedWidgetOfExactType != null,
+      'No DesignAncestor found in context. Consider supplying a D2 ancestor higher in the widget tree',
+    );
+    return inheritedWidgetOfExactType!._designSystemNotifier.value;
+  }
+
+  static ValueNotifier<DesignSystem> valueNotifierOf(BuildContext context) {
+    var inheritedWidgetOfExactType =
+        context.dependOnInheritedWidgetOfExactType<_DesignData>();
+    assert(
+      inheritedWidgetOfExactType != null,
+      'No DesignAncestor found in context. Consider supplying a D2 ancestor higher in the widget tree',
+    );
+    return inheritedWidgetOfExactType!._designSystemNotifier;
   }
 
   @override
   Widget build(BuildContext context) {
-    return DesignAncestorData(
-      // Setting the key here to ensure that this widget is not unnecessarily rebuilt when the parent widget changes.
-      key: ValueKey<DesignSystem>(system),
-      designSystem: system,
-      child: widget.child,
+    return _DesignData(
+      // In case a user decides to update the design system by mantaining state above this widget, this key ensures that the behaviour remains predictable and the widgets are correctly updated.
+      key: ValueKey(initialDesignSystem),
+      intitialDesignSystem: initialDesignSystem,
+      child: child,
     );
-  }
-}
-
-/// Meant for internal use only. Use [DesignAncestor] instead to provide a [DesignSystem] to children.
-///
-/// This class is public in order to make it possible for [DesignSystem.of] to exist. If this were not the case, then [DesignAncestorData.of] would need to be necessarily used, which is a less intuitive name.
-///
-/// Implementations of the [DesignAncestorData.of] and [DesignAncestorData.maybeOf] are taken verbatim from the official Flutter docs on [InheritedWidget].
-class DesignAncestorData extends InheritedWidget {
-  const DesignAncestorData({
-    super.key,
-    required this.designSystem,
-    required super.child,
-  });
-
-  /// A [DesignSystem] that is provided to descendent widgets
-  final DesignSystem designSystem;
-
-  static DesignAncestorData? maybeOf(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<DesignAncestorData>();
-
-  static DesignAncestorData of(BuildContext context) {
-    final DesignAncestorData? ancestor = maybeOf(context);
-    assert(
-      ancestor != null,
-      'No `DesignAncestor` or `DesignAncestorData` found in context.',
-    );
-    return ancestor!;
-  }
-
-  @override
-  bool updateShouldNotify(DesignAncestorData oldWidget) {
-    // Only update if the design system has changed
-    return oldWidget.designSystem != designSystem;
   }
 }

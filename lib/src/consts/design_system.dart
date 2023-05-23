@@ -70,6 +70,12 @@ enum DesignSystem {
     }
   }
 
-  static DesignSystem of(BuildContext context) =>
-      DesignAncestorData.of(context).designSystem;
+  /// Returns the current [DesignSystem] from the nearest [DesignAncestor].
+  ///
+  /// This value is purely a getter. To change the [DesignSystem], use [DesignAncestor.setDesignSystemOf] instead;
+  ///
+  /// Do note that the value returned by this method will NOT change when the parent [DesignAncestor] is updated.
+  /// To get the new value, call [DesignSystem.of] again.
+  /// To get a value that is constantly updated, use [DesignAncestor.valueNotifierOf] with a [ValueListenableBuilder].
+  static DesignSystem of(BuildContext context) => DesignAncestor.of(context);
 }
