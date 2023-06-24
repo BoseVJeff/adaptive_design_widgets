@@ -15,7 +15,7 @@ enum DesignSystem {
   ///
   /// Widgets: https://docs.flutter.dev/ui/widgets/material2
   /// Docs: https://m2.material.io/design
-  material2,
+  // material2,
 
   /// Refers to the iOS design system by Apple
   ///
