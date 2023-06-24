@@ -31,6 +31,7 @@ void main() {
       String previousDirectAccessMessage =
           'Direct Access: Design system is ${DesignSystem.material.name}';
 
+      // Iteratively press all buttons and verify that the behaviour is consistent.
       for (DesignSystem designSystem in DesignSystem.values) {
         final buttonFinder = find.byKey(ValueKey(designSystem));
         await widgetTester.tap(buttonFinder);
@@ -97,7 +98,7 @@ Widget testWidgetGenerator({
                 );
               }),
               ValueListenableBuilder(
-                valueListenable: DesignAncestor.valueNotifierOf(context),
+                valueListenable: DesignAncestor.designSystemNotifierOf(context),
                 builder: (
                   context,
                   value,
