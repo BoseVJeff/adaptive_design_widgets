@@ -41,8 +41,9 @@ class MyHomePage extends StatelessWidget {
           children: [
             StatefulBuilder(builder: (context, setState) {
               DesignSystem system = DesignSystem.of(context);
+              IconSystem iconSystem = IconSystem.of(context);
               return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     key: const ValueKey('Refresh'),
@@ -54,17 +55,30 @@ class MyHomePage extends StatelessWidget {
                   Text(
                     'Direct Access: Design system is ${system.name}',
                   ),
+                  Text(
+                    'Direct Access: Icon system is ${iconSystem.name}',
+                  ),
                 ],
               );
             }),
             ValueListenableBuilder(
-              valueListenable: DesignAncestor.valueNotifierOf(context),
+              valueListenable: DesignAncestor.designSystemNotifierOf(context),
               builder: (
                 context,
                 value,
                 child,
               ) {
                 return Text('Design System is ${value.name}');
+              },
+            ),
+            ValueListenableBuilder(
+              valueListenable: DesignAncestor.iconsSystemNotifierOf(context),
+              builder: (
+                context,
+                value,
+                child,
+              ) {
+                return Text('Icon System is ${value.name}');
               },
             ),
             ButtonBar(
@@ -78,6 +92,20 @@ class MyHomePage extends StatelessWidget {
                         context, DesignSystem.values[index]);
                   },
                   child: Text(DesignSystem.values[index].name),
+                ),
+              ),
+            ),
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: List<TextButton>.generate(
+                IconSystem.values.length,
+                (index) => TextButton(
+                  key: ValueKey<IconSystem>(IconSystem.values[index]),
+                  onPressed: () {
+                    DesignAncestor.setIconSystemOf(
+                        context, IconSystem.values[index]);
+                  },
+                  child: Text(IconSystem.values[index].name),
                 ),
               ),
             ),
