@@ -39,7 +39,8 @@ enum DesignSystem {
   ///
   /// Widgets: https://pub.dev/packages/yaru (Third Party - https://github.com/ubuntu)
   /// Demo: https://ubuntu.github.io/yaru.dart
-  yaru;
+  yaru,
+  platform;
 
   /// Set a value automatically based on the operating system.
   ///
@@ -51,7 +52,7 @@ enum DesignSystem {
   /// Linux: [DesignSystem.yaru]
   ///
   /// Operating system is determined by [Platform.operatingSystem]
-  static DesignSystem get platform {
+  factory DesignSystem.platformDesignSystem() {
     String os = Platform.operatingSystem;
     switch (os) {
       case 'fuchsia':
@@ -76,6 +77,7 @@ enum DesignSystem {
   ///
   /// Do note that the value returned by this method will NOT change when the parent [DesignAncestor] is updated.
   /// To get the new value, call [DesignSystem.of] again.
-  /// To get a value that is constantly updated, use [DesignAncestor.valueNotifierOf] with a [ValueListenableBuilder].
-  static DesignSystem of(BuildContext context) => DesignAncestor.of(context);
+  /// To get a value that is constantly updated, use [DesignAncestor.designSystemNotifierOf] with a [ValueListenableBuilder].
+  static DesignSystem of(BuildContext context) =>
+      DesignAncestor.designSystemOf(context);
 }
