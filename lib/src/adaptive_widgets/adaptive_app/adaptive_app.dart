@@ -272,7 +272,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         localizationsDelegates: localizationsDelegates,
         navigatorKey: navigatorKey,
         // This is the default value in the lib itself.
-        navigatorObservers: navigatorObservers ?? [],
+        navigatorObservers: navigatorObservers ?? const <NavigatorObserver>[],
         onGenerateInitialRoutes: onGenerateInitialRoutes,
         onGenerateRoute: onGenerateRoute,
         onGenerateTitle: onGenerateTitle,
