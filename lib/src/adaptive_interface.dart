@@ -16,7 +16,7 @@ typedef AdaptiveIconImplementation = Widget Function({
 /// Abstract interface for an Adaptive widget. Depends on [DesignSystem].
 ///
 /// Use this for all widgets that are NOT icons. For icons, use [AdaptiveIconInterface].
-abstract interface class AdaptiveWidgetInterface extends StatelessWidget {
+abstract class AdaptiveWidgetInterface extends StatelessWidget {
   const AdaptiveWidgetInterface({super.key});
 
   Widget materialWidgetBuilder(BuildContext context);
@@ -69,7 +69,7 @@ abstract interface class AdaptiveWidgetInterface extends StatelessWidget {
 ///
 /// The type of each icon is [Widget] as not all icon systems use the [Icon] class as the container.
 /// For example, `macos_ui` uses [MacosIcon] as the wrapper over [CupertinoIcon].
-abstract interface class AdaptiveIconInterface extends StatelessWidget {
+abstract class AdaptiveIconInterface extends StatelessWidget {
   const AdaptiveIconInterface({
     super.key,
     this.fill,
@@ -306,7 +306,7 @@ abstract interface class AdaptiveIconInterface extends StatelessWidget {
 ///
 /// Use this for miscellaneous objects that are are not widgets. Examples would be [ThemeData], etc.
 /// For icons, use [AdaptiveIconInterface]. For widgets, use [AdaptiveWidgetInterface].
-abstract interface class AdaptiveDesignObjectInterface<T> {
+abstract class AdaptiveDesignObjectInterface<T> {
   T materialDesignObjectBuilder();
 
   T cupertinoDesignObjectBuilder();
