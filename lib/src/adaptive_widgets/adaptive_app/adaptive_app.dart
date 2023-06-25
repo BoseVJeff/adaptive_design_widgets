@@ -234,8 +234,65 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   @override
   Widget cupertinoWidgetBuilder(BuildContext context) {
-    // TODO: implement cupertinoWidgetBuilder
-    throw UnimplementedError();
+    if (!_isRouter) {
+      return cupertino.CupertinoApp(
+        actions: actions,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        home: home,
+        initialRoute: initialRoute,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        navigatorKey: navigatorKey,
+        // This is the default value in the lib itself.
+        navigatorObservers: navigatorObservers ?? const <NavigatorObserver>[],
+        onGenerateInitialRoutes: onGenerateInitialRoutes,
+        onGenerateRoute: onGenerateRoute,
+        onGenerateTitle: onGenerateTitle,
+        onUnknownRoute: onUnknownRoute,
+        restorationScopeId: restorationScopeId,
+        routes: routes ?? const <String, WidgetBuilder>{},
+        // scrollBehavior: ,
+        shortcuts: shortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        title: title,
+      );
+    } else {
+      return cupertino.CupertinoApp.router(
+        actions: actions,
+        backButtonDispatcher: backButtonDispatcher,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        onGenerateTitle: onGenerateTitle,
+        restorationScopeId: restorationScopeId,
+        routeInformationParser: routeInformationParser,
+        routeInformationProvider: routeInformationProvider,
+        routerConfig: routerConfig,
+        routerDelegate: routerDelegate,
+        // scrollBehavior: ,
+        shortcuts: shortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        title: title,
+      );
+    }
   }
 
   @override
