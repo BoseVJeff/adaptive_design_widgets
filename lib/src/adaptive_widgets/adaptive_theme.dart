@@ -21,43 +21,25 @@ class AdaptiveTheme {
     this.yaruDarkTheme,
   });
 
-  factory AdaptiveTheme.defaultTheme() {
-    return AdaptiveTheme(
-      materialTheme: material.ThemeData.light(useMaterial3: true),
-      materialDarkTheme: material.ThemeData.dark(useMaterial3: true),
-      materialHighContrastTheme: material.ThemeData(
-        colorScheme: const material.ColorScheme.highContrastLight(),
-        useMaterial3: true,
-      ),
-      materialHighContrastDarkTheme: material.ThemeData(
-        colorScheme: const material.ColorScheme.highContrastDark(),
-        useMaterial3: true,
-      ),
-      cupertinoTheme: const cupertino.CupertinoThemeData(),
-      fluentTheme: fluent.FluentThemeData(brightness: Brightness.light),
-      fluentDarkTheme: fluent.FluentThemeData(brightness: Brightness.dark),
-      macosTheme: macos.MacosThemeData.light(),
-      macosDarkTheme: macos.MacosThemeData.dark(),
-      yaruTheme: yaru.yaruLight,
-      yaruDarkTheme: yaru.yaruDark,
-    );
-  }
-
-  final material.ThemeData materialTheme;
-  final material.ThemeData materialDarkTheme;
-  final material.ThemeData materialHighContrastTheme;
-  final material.ThemeData materialHighContrastDarkTheme;
-
-  final cupertino.CupertinoThemeData cupertinoTheme;
-
-  final fluent.FluentThemeData fluentTheme;
-  final fluent.FluentThemeData fluentDarkTheme;
-
-  final macos.MacosThemeData macosTheme;
-  final macos.MacosThemeData macosDarkTheme;
-
-  final material.ThemeData yaruTheme;
-  final material.ThemeData yaruDarkTheme;
+  static final AdaptiveTheme defaultTheme = AdaptiveTheme(
+    materialTheme: material.ThemeData.light(useMaterial3: true),
+    materialDarkTheme: material.ThemeData.dark(useMaterial3: true),
+    materialHighContrastTheme: material.ThemeData(
+      colorScheme: const material.ColorScheme.highContrastLight(),
+      useMaterial3: true,
+    ),
+    materialHighContrastDarkTheme: material.ThemeData(
+      colorScheme: const material.ColorScheme.highContrastDark(),
+      useMaterial3: true,
+    ),
+    cupertinoTheme: const cupertino.CupertinoThemeData(),
+    fluentTheme: fluent.FluentThemeData(brightness: Brightness.light),
+    fluentDarkTheme: fluent.FluentThemeData(brightness: Brightness.dark),
+    macosTheme: macos.MacosThemeData.light(),
+    macosDarkTheme: macos.MacosThemeData.dark(),
+    yaruTheme: yaru.yaruLight,
+    yaruDarkTheme: yaru.yaruDark,
+  );
 
   final material.ThemeData? materialTheme;
   final material.ThemeData? materialDarkTheme;
