@@ -5,7 +5,6 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:macos_ui/macos_ui.dart' as macos;
-import 'package:yaru/yaru.dart' as yaru;
 
 class AdaptiveApp extends AdaptiveWidgetInterface {
   // All assertions, etc copied wholesale from the [WidgetsApp] implementation.
