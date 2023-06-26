@@ -92,9 +92,6 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
           'will know what kind of PageRoute transition to build.',
         ),
         assert(supportedLocales.isNotEmpty),
-        // Assertion to make sure that the conversion to LogicalKeySet for MacosApp stays valid
-        assert(shortcuts == null ||
-            shortcuts.keys.every((element) => element.triggers != null)),
         routeInformationProvider = null,
         routeInformationParser = null,
         routerDelegate = null,
@@ -151,9 +148,6 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
           return true;
         }()),
         assert(supportedLocales.isNotEmpty),
-        // Assertion to make sure that the conversion to LogicalKeySet for MacosApp stays valid
-        assert(shortcuts == null ||
-            shortcuts.keys.every((element) => element.triggers != null)),
         // For MacosApp
         assert(routeInformationParser != null),
         // For MacosApp
@@ -404,8 +398,10 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         routes: routes ?? const <String, WidgetBuilder>{},
         // Converting 'Map<ShortcutActivator, Intent>?' to 'Map<LogicalKeySet, Intent>?'.
         shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
-            .map<LogicalKeySet, Intent>((key, value) =>
-                MapEntry(LogicalKeySet.fromSet(key.triggers!.toSet()), value)),
+            .map<LogicalKeySet, Intent>(
+          (key, value) => MapEntry(
+              LogicalKeySet.fromSet(key.triggers?.toSet() ?? {}), value),
+        ),
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
@@ -436,8 +432,10 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         routerDelegate: routerDelegate!,
         // scrollBehavior: ,
         shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
-            .map<LogicalKeySet, Intent>((key, value) =>
-                MapEntry(LogicalKeySet.fromSet(key.triggers!.toSet()), value)),
+            .map<LogicalKeySet, Intent>(
+          (key, value) => MapEntry(
+              LogicalKeySet.fromSet(key.triggers?.toSet() ?? {}), value),
+        ),
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
