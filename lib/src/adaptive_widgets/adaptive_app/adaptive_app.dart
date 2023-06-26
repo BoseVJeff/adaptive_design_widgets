@@ -246,7 +246,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   Widget cupertinoWidgetBuilder(BuildContext context) {
     if (!_isRouter) {
       return cupertino.CupertinoApp(
-        actions: actions,
+        actions: actions ?? WidgetsApp.defaultActions,
         builder: builder,
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
@@ -268,7 +268,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         restorationScopeId: restorationScopeId,
         routes: routes ?? const <String, WidgetBuilder>{},
         // scrollBehavior: ,
-        shortcuts: shortcuts,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
@@ -277,7 +277,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
       );
     } else {
       return cupertino.CupertinoApp.router(
-        actions: actions,
+        actions: actions ?? WidgetsApp.defaultActions,
         backButtonDispatcher: backButtonDispatcher,
         builder: builder,
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
@@ -295,7 +295,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         routerConfig: routerConfig,
         routerDelegate: routerDelegate,
         // scrollBehavior: ,
-        shortcuts: shortcuts,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
@@ -463,7 +463,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   Widget materialWidgetBuilder(BuildContext context) {
     if (!_isRouter) {
       return material.MaterialApp(
-        actions: actions,
+        actions: actions ?? WidgetsApp.defaultActions,
         builder: builder,
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
@@ -490,7 +490,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         routes: routes ?? const <String, WidgetBuilder>{},
         // scaffoldMessengerKey: sca,
         // scrollBehavior: ,
-        shortcuts: shortcuts,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
@@ -502,7 +502,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
       );
     } else {
       return material.MaterialApp.router(
-        actions: actions,
+        actions: actions ?? WidgetsApp.defaultActions,
         backButtonDispatcher: backButtonDispatcher,
         builder: builder,
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
@@ -525,7 +525,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         routerDelegate: routerDelegate,
         // scaffoldMessengerKey: ,
         // scrollBehavior: ,
-        shortcuts: shortcuts,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
