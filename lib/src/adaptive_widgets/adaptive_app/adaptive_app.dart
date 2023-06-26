@@ -247,6 +247,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   static bool showPerformanceOverlayOverride = false;
 
   static bool debugShowWidgetInspectorOverride = false;
+
   static bool debugAllowBannerOverride = true;
 
   @override
