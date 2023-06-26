@@ -307,8 +307,69 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   @override
   Widget fluentWidgetBuilder(BuildContext context) {
-    // TODO: implement fluentWidgetBuilder
-    throw UnimplementedError();
+    if (!_isRouter) {
+      return fluent.FluentApp(
+        actions: actions ?? WidgetsApp.defaultActions,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: darkTheme,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        home: home,
+        initialRoute: initialRoute,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        navigatorKey: navigatorKey,
+        // This is the default value in the lib itself.
+        navigatorObservers: navigatorObservers ?? const <NavigatorObserver>[],
+        onGenerateInitialRoutes: onGenerateInitialRoutes,
+        onGenerateRoute: onGenerateRoute,
+        onGenerateTitle: onGenerateTitle,
+        onUnknownRoute: onUnknownRoute,
+        restorationScopeId: restorationScopeId,
+        routes: routes ?? const <String, WidgetBuilder>{},
+        // scrollBehavior: ,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeMode: ,
+        title: title,
+      );
+    } else {
+      return fluent.FluentApp.router(
+        actions: actions ?? WidgetsApp.defaultActions,
+        backButtonDispatcher: backButtonDispatcher,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: ,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        onGenerateTitle: onGenerateTitle,
+        restorationScopeId: restorationScopeId,
+        routeInformationParser: routeInformationParser,
+        routeInformationProvider: routeInformationProvider,
+        routerConfig: routerConfig,
+        routerDelegate: routerDelegate,
+        // scrollBehavior: ,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeMode: ,
+        title: title,
+      );
+    }
   }
 
   @override
