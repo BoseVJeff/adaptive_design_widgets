@@ -6,6 +6,16 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:macos_ui/macos_ui.dart' as macos;
 
+/// A wrapper widget for an app that uses adaptive design.
+///
+/// This class returns a different widget based on what the value of the parent [DesignAncestor] is.
+/// For more details on the exact choices, refer to [AdaptiveWidgetInterface], the class that this class extends.
+///
+/// This class is a thin wrapper over all of the related `*App` widgets like `MaterialApp`, etc.
+/// It attempts to pass the arguments through to the constructor as-is wherever possible.
+/// Exceptions will be noted wherever they exist.
+///
+/// For more information, refer to the corresponding [WidgetsApp] docs.
 class AdaptiveApp extends AdaptiveWidgetInterface {
   // All assertions, etc copied wholesale from the [WidgetsApp] implementation.
   AdaptiveApp({
