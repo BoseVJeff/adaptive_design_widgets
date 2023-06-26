@@ -11,7 +11,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   AdaptiveApp({
     // can't be const because the asserts use methods on Iterable :-(
     super.key,
-    this.adaptiveTheme,
+    this.adaptiveTheme = const AdaptiveTheme(),
     this.navigatorKey,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
@@ -101,7 +101,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   AdaptiveApp.router({
     super.key,
-    this.adaptiveTheme,
+    this.adaptiveTheme = const AdaptiveTheme(),
     this.routeInformationProvider,
     required this.routeInformationParser,
     required this.routerDelegate,
@@ -165,7 +165,16 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   final bool _isRouter;
 
-  final AdaptiveTheme? adaptiveTheme;
+  /// The theme of this app.
+  ///
+  /// By default, this app delegates theming to the underlying widget.
+  /// To have a stable default, set this to [AdaptiveTheme.defaultTheme] instead.
+  ///
+  /// This class includes both the light and dark variants of the theme.
+  /// Additionally, high contrast variants can be provided for Material themes.
+  ///
+  /// This uses a custom class because all of the underlying themes are represented by seperate classes.
+  final AdaptiveTheme adaptiveTheme;
 
   final GlobalKey<NavigatorState>? navigatorKey;
 
@@ -270,7 +279,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.cupertinoTheme,
+        theme: adaptiveTheme.cupertinoTheme,
         title: title,
       );
     } else {
@@ -297,7 +306,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.cupertinoTheme,
+        theme: adaptiveTheme.cupertinoTheme,
         title: title,
       );
     }
@@ -312,7 +321,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.fluentDarkTheme,
+        darkTheme: adaptiveTheme.fluentDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         home: home,
         initialRoute: initialRoute,
@@ -334,7 +343,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.fluentTheme,
+        theme: adaptiveTheme.fluentTheme,
         // themeMode: ,
         title: title,
       );
@@ -346,7 +355,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.fluentDarkTheme,
+        darkTheme: adaptiveTheme.fluentDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
@@ -363,7 +372,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.fluentTheme,
+        theme: adaptiveTheme.fluentTheme,
         // themeMode: ,
         title: title,
       );
@@ -379,7 +388,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.macosDarkTheme,
+        darkTheme: adaptiveTheme.macosDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         home: home,
         initialRoute: initialRoute,
@@ -405,7 +414,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.macosTheme,
+        theme: adaptiveTheme.macosTheme,
         // themeMode: ,
         title: title,
       );
@@ -417,7 +426,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.macosDarkTheme,
+        darkTheme: adaptiveTheme.macosDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
@@ -439,7 +448,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.macosTheme,
+        theme: adaptiveTheme.macosTheme,
         // themeMode: ,
         title: title,
       );
@@ -455,11 +464,11 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.materialDarkTheme,
+        darkTheme: adaptiveTheme.materialDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         // debugShowMaterialGrid: debugShowM,
-        highContrastDarkTheme: adaptiveTheme?.materialHighContrastDarkTheme,
-        highContrastTheme: adaptiveTheme?.materialHighContrastTheme,
+        highContrastDarkTheme: adaptiveTheme.materialHighContrastDarkTheme,
+        highContrastTheme: adaptiveTheme.materialHighContrastTheme,
         home: home,
         initialRoute: initialRoute,
         locale: locale,
@@ -481,7 +490,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.materialTheme,
+        theme: adaptiveTheme.materialTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -495,11 +504,11 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.materialDarkTheme,
+        darkTheme: adaptiveTheme.materialDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         // debugShowMaterialGrid: ,
-        highContrastDarkTheme: adaptiveTheme?.materialHighContrastDarkTheme,
-        highContrastTheme: adaptiveTheme?.materialHighContrastTheme,
+        highContrastDarkTheme: adaptiveTheme.materialHighContrastDarkTheme,
+        highContrastTheme: adaptiveTheme.materialHighContrastTheme,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
         localeResolutionCallback: localeResolutionCallback,
@@ -516,7 +525,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.materialTheme,
+        theme: adaptiveTheme.materialTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -534,7 +543,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.yaruDarkTheme,
+        darkTheme: adaptiveTheme.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         home: home,
         initialRoute: initialRoute,
@@ -557,7 +566,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.yaruTheme,
+        theme: adaptiveTheme.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -571,7 +580,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        darkTheme: adaptiveTheme?.yaruDarkTheme,
+        darkTheme: adaptiveTheme.yaruDarkTheme ??
+            AdaptiveTheme.defaultTheme.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
@@ -589,7 +599,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        theme: adaptiveTheme?.yaruTheme,
+        theme: adaptiveTheme.yaruTheme ?? AdaptiveTheme.defaultTheme.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
