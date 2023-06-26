@@ -91,6 +91,9 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
           'will know what kind of PageRoute transition to build.',
         ),
         assert(supportedLocales.isNotEmpty),
+        // Assertion to make sure that the conversion to LogicalKeySet for MacosApp stays valid
+        assert(shortcuts == null ||
+            shortcuts.keys.every((element) => element.triggers != null)),
         routeInformationProvider = null,
         routeInformationParser = null,
         routerDelegate = null,
@@ -101,8 +104,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   AdaptiveApp.router({
     super.key,
     this.routeInformationProvider,
-    this.routeInformationParser,
-    this.routerDelegate,
+    required this.routeInformationParser,
+    required this.routerDelegate,
     this.routerConfig,
     this.backButtonDispatcher,
     this.builder,
@@ -146,6 +149,13 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
           return true;
         }()),
         assert(supportedLocales.isNotEmpty),
+        // Assertion to make sure that the conversion to LogicalKeySet for MacosApp stays valid
+        assert(shortcuts == null ||
+            shortcuts.keys.every((element) => element.triggers != null)),
+        // For MacosApp
+        assert(routeInformationParser != null),
+        // For MacosApp
+        assert(routerDelegate != null),
         navigatorObservers = null,
         navigatorKey = null,
         onGenerateRoute = null,
