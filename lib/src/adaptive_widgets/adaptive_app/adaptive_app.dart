@@ -1,4 +1,5 @@
 import 'package:adaptive_design_widgets/src/adaptive_interface.dart';
+import 'package:adaptive_design_widgets/src/adaptive_widgets/adaptive_theme.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
@@ -11,6 +12,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   AdaptiveApp({
     // can't be const because the asserts use methods on Iterable :-(
     super.key,
+    this.adaptiveTheme,
     this.navigatorKey,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
@@ -103,6 +105,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   AdaptiveApp.router({
     super.key,
+    this.adaptiveTheme,
     this.routeInformationProvider,
     required this.routeInformationParser,
     required this.routerDelegate,
@@ -168,6 +171,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         _isRouter = true;
 
   final bool _isRouter;
+
+  final AdaptiveTheme? adaptiveTheme;
 
   final GlobalKey<NavigatorState>? navigatorKey;
 
@@ -272,7 +277,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.cupertinoTheme,
         title: title,
       );
     } else {
@@ -299,7 +304,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.cupertinoTheme,
         title: title,
       );
     }
@@ -314,7 +319,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: darkTheme,
+        darkTheme: adaptiveTheme?.fluentDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         home: home,
         initialRoute: initialRoute,
@@ -336,7 +341,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.fluentTheme,
         // themeMode: ,
         title: title,
       );
@@ -348,7 +353,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: ,
+        darkTheme: adaptiveTheme?.fluentDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
@@ -365,7 +370,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.fluentTheme,
         // themeMode: ,
         title: title,
       );
@@ -381,11 +386,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: darkTheme,
+        darkTheme: adaptiveTheme?.macosDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-        // debugShowMaterialGrid: debugShowM,
-        // highContrastDarkTheme: this.highContrastDarkTheme,
-        // highContrastTheme: ,
         home: home,
         initialRoute: initialRoute,
         locale: locale,
@@ -401,19 +403,14 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         onUnknownRoute: onUnknownRoute,
         restorationScopeId: restorationScopeId,
         routes: routes ?? const <String, WidgetBuilder>{},
-        // scaffoldMessengerKey: sca,
-        // scrollBehavior: ,
-        // TODO: Convert 'Map<ShortcutActivator, Intent>?' to 'Map<LogicalKeySet, Intent>?'.
-        // shortcuts: shortcuts,
+        // Converting 'Map<ShortcutActivator, Intent>?' to 'Map<LogicalKeySet, Intent>?'.
         shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
             .map<LogicalKeySet, Intent>((key, value) =>
                 MapEntry(LogicalKeySet.fromSet(key.triggers!.toSet()), value)),
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
-        // themeAnimationCurve: ,
-        // themeAnimationDuration: ,
+        theme: adaptiveTheme?.macosTheme,
         // themeMode: ,
         title: title,
       );
@@ -425,11 +422,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: ,
+        darkTheme: adaptiveTheme?.macosDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-        // debugShowMaterialGrid: ,
-        // highContrastDarkTheme: ,
-        // highContrastTheme: ,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
         localeResolutionCallback: localeResolutionCallback,
@@ -439,10 +433,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         // Adding null check here as this is asserted by the constructor
         routeInformationParser: routeInformationParser!,
         routeInformationProvider: routeInformationProvider,
-        // routerConfig: routerConfig,
         // Adding null check here as this is asserted by the constructor
         routerDelegate: routerDelegate!,
-        // scaffoldMessengerKey: ,
         // scrollBehavior: ,
         shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
             .map<LogicalKeySet, Intent>((key, value) =>
@@ -450,9 +442,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
-        // themeAnimationCurve: ,
-        // themeAnimationDuration: ,
+        theme: adaptiveTheme?.macosTheme,
         // themeMode: ,
         title: title,
       );
@@ -468,11 +458,11 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: darkTheme,
+        darkTheme: adaptiveTheme?.materialDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         // debugShowMaterialGrid: debugShowM,
-        // highContrastDarkTheme: this.highContrastDarkTheme,
-        // highContrastTheme: ,
+        highContrastDarkTheme: adaptiveTheme?.materialHighContrastDarkTheme,
+        highContrastTheme: adaptiveTheme?.materialHighContrastTheme,
         home: home,
         initialRoute: initialRoute,
         locale: locale,
@@ -494,7 +484,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.materialTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -508,11 +498,11 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: ,
+        darkTheme: adaptiveTheme?.materialDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         // debugShowMaterialGrid: ,
-        // highContrastDarkTheme: ,
-        // highContrastTheme: ,
+        highContrastDarkTheme: adaptiveTheme?.materialHighContrastDarkTheme,
+        highContrastTheme: adaptiveTheme?.materialHighContrastTheme,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
         localeResolutionCallback: localeResolutionCallback,
@@ -529,7 +519,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.materialTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -547,11 +537,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: darkTheme,
+        darkTheme: adaptiveTheme?.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-        // debugShowMaterialGrid: debugShowM,
-        // highContrastDarkTheme: this.highContrastDarkTheme,
-        // highContrastTheme: ,
         home: home,
         initialRoute: initialRoute,
         locale: locale,
@@ -573,7 +560,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
@@ -587,11 +574,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         checkerboardRasterCacheImages: checkerboardRasterCacheImages,
         color: color,
-        // darkTheme: ,
+        darkTheme: adaptiveTheme?.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-        // debugShowMaterialGrid: ,
-        // highContrastDarkTheme: ,
-        // highContrastTheme: ,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
         localeResolutionCallback: localeResolutionCallback,
@@ -608,7 +592,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showPerformanceOverlay: showPerformanceOverlay,
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
-        // theme: ,
+        theme: adaptiveTheme?.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
         // themeMode: ,
