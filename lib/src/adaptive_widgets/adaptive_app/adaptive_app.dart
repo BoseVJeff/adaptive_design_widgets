@@ -374,8 +374,89 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   @override
   Widget macosWidgetBuilder(BuildContext context) {
-    // TODO: implement macosWidgetBuilder
-    throw UnimplementedError();
+    if (!_isRouter) {
+      return macos.MacosApp(
+        actions: actions ?? WidgetsApp.defaultActions,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: darkTheme,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        // debugShowMaterialGrid: debugShowM,
+        // highContrastDarkTheme: this.highContrastDarkTheme,
+        // highContrastTheme: ,
+        home: home,
+        initialRoute: initialRoute,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        navigatorKey: navigatorKey,
+        // This is the default value in the lib itself.
+        navigatorObservers: navigatorObservers ?? [],
+        onGenerateInitialRoutes: onGenerateInitialRoutes,
+        onGenerateRoute: onGenerateRoute,
+        onGenerateTitle: onGenerateTitle,
+        onUnknownRoute: onUnknownRoute,
+        restorationScopeId: restorationScopeId,
+        routes: routes ?? const <String, WidgetBuilder>{},
+        // scaffoldMessengerKey: sca,
+        // scrollBehavior: ,
+        // TODO: Convert 'Map<ShortcutActivator, Intent>?' to 'Map<LogicalKeySet, Intent>?'.
+        // shortcuts: shortcuts,
+        shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
+            .map<LogicalKeySet, Intent>((key, value) =>
+                MapEntry(LogicalKeySet.fromSet(key.triggers!.toSet()), value)),
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeAnimationCurve: ,
+        // themeAnimationDuration: ,
+        // themeMode: ,
+        title: title,
+      );
+    } else {
+      return macos.MacosApp.router(
+        actions: actions ?? WidgetsApp.defaultActions,
+        backButtonDispatcher: backButtonDispatcher,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: ,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        // debugShowMaterialGrid: ,
+        // highContrastDarkTheme: ,
+        // highContrastTheme: ,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        onGenerateTitle: onGenerateTitle,
+        restorationScopeId: restorationScopeId,
+        // Adding null check here as this is asserted by the constructor
+        routeInformationParser: routeInformationParser!,
+        routeInformationProvider: routeInformationProvider,
+        // routerConfig: routerConfig,
+        // Adding null check here as this is asserted by the constructor
+        routerDelegate: routerDelegate!,
+        // scaffoldMessengerKey: ,
+        // scrollBehavior: ,
+        shortcuts: (shortcuts ?? WidgetsApp.defaultShortcuts)
+            .map<LogicalKeySet, Intent>((key, value) =>
+                MapEntry(LogicalKeySet.fromSet(key.triggers!.toSet()), value)),
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeAnimationCurve: ,
+        // themeAnimationDuration: ,
+        // themeMode: ,
+        title: title,
+      );
+    }
   }
 
   @override
