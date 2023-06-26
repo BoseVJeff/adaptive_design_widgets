@@ -540,7 +540,80 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   @override
   Widget yaruWidgetBuilder(BuildContext context) {
-    // TODO: implement yaruWidgetBuilder
-    throw UnimplementedError();
+    if (!_isRouter) {
+      return material.MaterialApp(
+        actions: actions ?? WidgetsApp.defaultActions,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: darkTheme,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        // debugShowMaterialGrid: debugShowM,
+        // highContrastDarkTheme: this.highContrastDarkTheme,
+        // highContrastTheme: ,
+        home: home,
+        initialRoute: initialRoute,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        navigatorKey: navigatorKey,
+        // This is the default value in the lib itself.
+        navigatorObservers: navigatorObservers ?? const <NavigatorObserver>[],
+        onGenerateInitialRoutes: onGenerateInitialRoutes,
+        onGenerateRoute: onGenerateRoute,
+        onGenerateTitle: onGenerateTitle,
+        onUnknownRoute: onUnknownRoute,
+        restorationScopeId: restorationScopeId,
+        routes: routes ?? const <String, WidgetBuilder>{},
+        // scaffoldMessengerKey: sca,
+        // scrollBehavior: ,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeAnimationCurve: ,
+        // themeAnimationDuration: ,
+        // themeMode: ,
+        title: title,
+      );
+    } else {
+      return material.MaterialApp.router(
+        actions: actions ?? WidgetsApp.defaultActions,
+        backButtonDispatcher: backButtonDispatcher,
+        builder: builder,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        color: color,
+        // darkTheme: ,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        // debugShowMaterialGrid: ,
+        // highContrastDarkTheme: ,
+        // highContrastTheme: ,
+        locale: locale,
+        localeListResolutionCallback: localeListResolutionCallback,
+        localeResolutionCallback: localeResolutionCallback,
+        localizationsDelegates: localizationsDelegates,
+        onGenerateTitle: onGenerateTitle,
+        restorationScopeId: restorationScopeId,
+        routeInformationParser: routeInformationParser,
+        routeInformationProvider: routeInformationProvider,
+        routerConfig: routerConfig,
+        routerDelegate: routerDelegate,
+        // scaffoldMessengerKey: ,
+        // scrollBehavior: ,
+        shortcuts: shortcuts ?? WidgetsApp.defaultShortcuts,
+        showPerformanceOverlay: showPerformanceOverlay,
+        showSemanticsDebugger: showSemanticsDebugger,
+        supportedLocales: supportedLocales,
+        // theme: ,
+        // themeAnimationCurve: ,
+        // themeAnimationDuration: ,
+        // themeMode: ,
+        title: title,
+      );
+    }
   }
 }
