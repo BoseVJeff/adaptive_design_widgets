@@ -8,17 +8,17 @@ import 'package:yaru/yaru.dart' as yaru;
 
 class AdaptiveTheme {
   const AdaptiveTheme({
-    required this.materialTheme,
-    required this.materialDarkTheme,
-    required this.materialHighContrastTheme,
-    required this.materialHighContrastDarkTheme,
-    required this.cupertinoTheme,
-    required this.fluentTheme,
-    required this.fluentDarkTheme,
-    required this.macosTheme,
-    required this.macosDarkTheme,
-    required this.yaruTheme,
-    required this.yaruDarkTheme,
+    this.materialTheme,
+    this.materialDarkTheme,
+    this.materialHighContrastTheme,
+    this.materialHighContrastDarkTheme,
+    this.cupertinoTheme,
+    this.fluentTheme,
+    this.fluentDarkTheme,
+    this.macosTheme,
+    this.macosDarkTheme,
+    this.yaruTheme,
+    this.yaruDarkTheme,
   });
 
   factory AdaptiveTheme.defaultTheme() {
@@ -58,4 +58,20 @@ class AdaptiveTheme {
 
   final material.ThemeData yaruTheme;
   final material.ThemeData yaruDarkTheme;
+
+  final material.ThemeData? materialTheme;
+  final material.ThemeData? materialDarkTheme;
+  final material.ThemeData? materialHighContrastTheme;
+  final material.ThemeData? materialHighContrastDarkTheme;
+
+  final cupertino.CupertinoThemeData? cupertinoTheme;
+
+  final fluent.FluentThemeData? fluentTheme;
+  final fluent.FluentThemeData? fluentDarkTheme;
+
+  final macos.MacosThemeData? macosTheme;
+  final macos.MacosThemeData? macosDarkTheme;
+
+  final material.ThemeData? yaruTheme;
+  final material.ThemeData? yaruDarkTheme;
 }
