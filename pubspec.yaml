@@ -19,6 +19,7 @@ dependencies:
   yaru: ^0.7.0
   yaru_icons: ^1.0.4
   yaru_widgets: ^2.3.1
+  material_color_utilities: ^0.2.0
 
 dev_dependencies:
   flutter_test:
