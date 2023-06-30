@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:macos_ui/macos_ui.dart' as macos;
 
+// TODO: Look into supporting dynamic app themes (dynamic_color, yaru).
+// These themes require a parent builder function that must be ideally inserted above the *App widget.
 /// A wrapper widget for an app that uses adaptive design.
 ///
 /// This class returns a different widget based on what the value of the parent [DesignAncestor] is.
