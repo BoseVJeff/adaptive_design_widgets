@@ -24,6 +24,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
     // can't be const because the asserts use methods on Iterable :-(
     super.key,
     this.adaptiveTheme = const AdaptiveTheme(),
+    this.themeMode = AdaptiveThemeMode.system,
     this.navigatorKey,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
@@ -114,6 +115,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   AdaptiveApp.router({
     super.key,
     this.adaptiveTheme = const AdaptiveTheme(),
+    this.themeMode = AdaptiveThemeMode.system,
     this.routeInformationProvider,
     required this.routeInformationParser,
     required this.routerDelegate,
@@ -187,6 +189,11 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
   ///
   /// This uses a custom class because all of the underlying themes are represented by seperate classes.
   final AdaptiveTheme adaptiveTheme;
+
+  /// The theme mode of this app.
+  ///
+  /// By default, this value is [AdaptiveThemeMode.system].
+  final AdaptiveThemeMode themeMode;
 
   final GlobalKey<NavigatorState>? navigatorKey;
 
@@ -262,6 +269,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
 
   static bool debugAllowBannerOverride = true;
 
+  // TODO: Look into light/dark theme switching for CupertinoApp.
   @override
   Widget cupertinoWidgetBuilder(BuildContext context) {
     if (!_isRouter) {
@@ -357,7 +365,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
         theme: adaptiveTheme.fluentTheme,
-        // themeMode: ,
+        themeMode: themeMode.fluentThemeMode,
         title: title,
       );
     } else {
@@ -386,7 +394,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
         theme: adaptiveTheme.fluentTheme,
-        // themeMode: ,
+        themeMode: themeMode.fluentThemeMode,
         title: title,
       );
     }
@@ -428,7 +436,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
         theme: adaptiveTheme.macosTheme,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     } else {
@@ -462,7 +470,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         showSemanticsDebugger: showSemanticsDebugger,
         supportedLocales: supportedLocales,
         theme: adaptiveTheme.macosTheme,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     }
@@ -506,7 +514,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         theme: adaptiveTheme.materialLightTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     } else {
@@ -541,7 +549,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         theme: adaptiveTheme.materialLightTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     }
@@ -584,7 +592,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         theme: adaptiveTheme.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     } else {
@@ -619,7 +627,7 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         theme: adaptiveTheme.yaruTheme ?? AdaptiveTheme.defaultTheme.yaruTheme,
         // themeAnimationCurve: ,
         // themeAnimationDuration: ,
-        // themeMode: ,
+        themeMode: themeMode.materialThemeMode,
         title: title,
       );
     }

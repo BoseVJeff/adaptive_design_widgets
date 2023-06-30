@@ -91,4 +91,38 @@ class AdaptiveTheme {
   final material.ThemeData? yaruHighContrastLightTheme;
   final material.ThemeData? yaruHighContrastDarkTheme;
 }
+
+/// The Theme mode of the Adaptive app.
+///
+/// This is necessary as [material.ThemeMode] and [fluent.ThemeMode] are distinct, incompatible classes
+enum AdaptiveThemeMode {
+  light(
+    materialThemeMode: material.ThemeMode.light,
+    fluentThemeMode: fluent.ThemeMode.light,
+  ),
+  dark(
+    materialThemeMode: material.ThemeMode.dark,
+    fluentThemeMode: fluent.ThemeMode.dark,
+  ),
+  system(
+    materialThemeMode: material.ThemeMode.system,
+    fluentThemeMode: fluent.ThemeMode.system,
+  );
+
+  const AdaptiveThemeMode({
+    required this.materialThemeMode,
+    required this.fluentThemeMode,
+  });
+
+  final material.ThemeMode materialThemeMode;
+  final fluent.ThemeMode fluentThemeMode;
+
+  factory AdaptiveThemeMode.fromBrightness(Brightness brightness) {
+    switch (brightness) {
+      case Brightness.light:
+        return AdaptiveThemeMode.light;
+      case Brightness.dark:
+        return AdaptiveThemeMode.dark;
+    }
+  }
 }
