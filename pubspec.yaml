@@ -66,6 +66,7 @@ flutter:
   fonts:
     # Weights mapped according to https://stackoverflow.com/a/10909252
     # Regular Apple fonts
+    # Fonts taken from https://developer.apple.com/fonts/
     - family: SF Pro
       fonts:
         - asset: fonts/SF-Pro/SF-Pro.ttf
@@ -117,7 +118,7 @@ flutter:
           style: italic
           weight: 900
     - family: Roboto
-    # Font weights taken from https://fonts.google.com/specimen/Roboto
+    # Font and font weights taken from https://fonts.google.com/specimen/Roboto
       fonts:
         - asset: fonts/Roboto/Roboto-Thin.ttf
           style: normal
@@ -155,6 +156,8 @@ flutter:
         - asset: fonts/Roboto/Roboto-BlackItalic.ttf
           style: italic
           weight: 900
+    # Microsoft fonts
+    # Taken from https://learn.microsoft.com/en-us/windows/apps/design/downloads/#fonts
     - family: Segoe-UI-VF
       fonts:
         - asset: fonts/Segoe-UI-VF/SegoeUI-VF.ttf
