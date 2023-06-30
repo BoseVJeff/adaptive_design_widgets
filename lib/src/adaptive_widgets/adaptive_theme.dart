@@ -19,6 +19,8 @@ class AdaptiveTheme {
     this.macosDarkTheme,
     this.yaruTheme,
     this.yaruDarkTheme,
+    this.yaruHighContrastLightTheme,
+    this.yaruHighContrastDarkTheme,
   });
 
   static final AdaptiveTheme defaultTheme = AdaptiveTheme(
@@ -39,6 +41,8 @@ class AdaptiveTheme {
     macosDarkTheme: macos.MacosThemeData.dark(),
     yaruTheme: yaru.yaruLight,
     yaruDarkTheme: yaru.yaruDark,
+    yaruHighContrastLightTheme: yaru.yaruHighContrastLight,
+    yaruHighContrastDarkTheme: yaru.yaruHighContrastDark,
   );
 
   final material.ThemeData? materialLightTheme;
@@ -56,4 +60,7 @@ class AdaptiveTheme {
 
   final material.ThemeData? yaruTheme;
   final material.ThemeData? yaruDarkTheme;
+  final material.ThemeData? yaruHighContrastLightTheme;
+  final material.ThemeData? yaruHighContrastDarkTheme;
+}
 }

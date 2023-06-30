@@ -558,6 +558,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         color: color,
         darkTheme: adaptiveTheme.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        highContrastTheme: adaptiveTheme.yaruHighContrastLightTheme,
+        highContrastDarkTheme: adaptiveTheme.yaruHighContrastDarkTheme,
         home: home,
         initialRoute: initialRoute,
         locale: locale,
@@ -596,6 +598,8 @@ class AdaptiveApp extends AdaptiveWidgetInterface {
         darkTheme: adaptiveTheme.yaruDarkTheme ??
             AdaptiveTheme.defaultTheme.yaruDarkTheme,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        highContrastTheme: adaptiveTheme.yaruHighContrastLightTheme,
+        highContrastDarkTheme: adaptiveTheme.yaruHighContrastDarkTheme,
         locale: locale,
         localeListResolutionCallback: localeListResolutionCallback,
         localeResolutionCallback: localeResolutionCallback,
