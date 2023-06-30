@@ -62,3 +62,99 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    # Weights mapped according to https://stackoverflow.com/a/10909252
+    # Regular Apple fonts
+    - family: SF Pro
+      fonts:
+        - asset: fonts/SF-Pro/SF-Pro.ttf
+          style: normal
+        - asset: fonts/SF-Pro/SF-Pro-Italic.ttf
+          style: italic
+    - family: SF Compact
+      fonts:
+        - asset: fonts/SF-Compact/SF-Compact.ttf
+          style: normal
+        - asset: fonts/SF-Compact/SF-Comapct-Italic.ttf
+          style: italic
+    - family: SF Mono
+      fonts:
+        - asset: fonts/SF-Mono/SF-Mono-Light.otf
+          style: normal
+          weight: 300
+        - asset: fonts/SF-Mono/SF-Mono-LightItalic.otf
+          style: italic
+          weight: 300
+        - asset: fonts/SF-Mono/SF-Mono-Regular.otf
+          style: normal
+          weight: 400
+        - asset: fonts/SF-Mono/SF-Mono-RegularItalic.otf
+          style: italic
+          weight: 400
+        - asset: fonts/SF-Mono/SF-Mono-Medium.otf
+          style: normal
+          weight: 500
+        - asset: fonts/SF-Mono/SF-Mono-MediumItalic.otf
+          style: italic
+          weight: 500
+        - asset: fonts/SF-Mono/SF-Mono-Semibold.otf
+          style: normal
+          weight: 600
+        - asset: fonts/SF-Mono/SF-Mono-SemiboldItalic.otf
+          style: italic
+          weight: 600
+        - asset: fonts/SF-Mono/SF-Mono-Bold.otf
+          style: normal
+          weight: 700
+        - asset: fonts/SF-Mono/SF-Mono-BoldItalic.otf
+          style: italic
+          weight: 700
+        - asset: fonts/SF-Mono/SF-Mono-Heavy.otf
+          style: normal
+          weight: 900
+        - asset: fonts/SF-Mono/SF-Mono-HeavyItalic.otf
+          style: italic
+          weight: 900
+    - family: Roboto
+    # Font weights taken from https://fonts.google.com/specimen/Roboto
+      fonts:
+        - asset: fonts/Roboto/Roboto-Thin.ttf
+          style: normal
+          weight: 100
+        - asset: fonts/Roboto/Roboto-ThinItalic.ttf
+          style: italic
+          weight: 100
+        - asset: fonts/Roboto/Roboto-Light.ttf
+          style: normal
+          weight: 300
+        - asset: fonts/Roboto/Roboto-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: fonts/Roboto/Roboto-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: fonts/Roboto/Roboto-Italic.ttf
+          style: italic
+          weight: 400
+        - asset: fonts/Roboto/Roboto-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: fonts/Roboto/Roboto-MediumItalic.ttf
+          style: italic
+          weight: 500
+        - asset: fonts/Roboto/Roboto-Bold.ttf
+          style: normal
+          weight: 700
+        - asset: fonts/Roboto/Roboto-BoldItalic.ttf
+          style: italic
+          weight: 700
+        - asset: fonts/Roboto/Roboto-Black.ttf
+          style: normal
+          weight: 900
+        - asset: fonts/Roboto/Roboto-BlackItalic.ttf
+          style: italic
+          weight: 900
+    - family: Segoe-UI-VF
+      fonts:
+        - asset: fonts/Segoe-UI-VF/SegoeUI-VF.ttf
