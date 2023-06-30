@@ -45,12 +45,16 @@ class MyHomePage extends StatelessWidget {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  GestureDetector(
-                    key: const ValueKey('Refresh'),
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: const Icon(Icons.refresh),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    hitTestBehavior: HitTestBehavior.deferToChild,
+                    child: GestureDetector(
+                      key: const ValueKey('Refresh'),
+                      onTap: () {
+                        setState(() {});
+                      },
+                      child: const Icon(Icons.refresh),
+                    ),
                   ),
                   Text(
                     'Direct Access: Design system is ${system.name}',
