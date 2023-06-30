@@ -45,6 +45,34 @@ class AdaptiveTheme {
     yaruHighContrastDarkTheme: yaru.yaruHighContrastDark,
   );
 
+  /* factory AdaptiveTheme.fromCorePalette(CorePalette corePalette) {
+    Scheme lightScheme = Scheme.lightFromCorePalette(corePalette);
+    Scheme darkScheme = Scheme.darkFromCorePalette(corePalette);
+
+    material.ThemeData materialLight = material.ThemeData(
+      colorScheme: corePalette.toColorScheme(brightness: Brightness.light),
+      useMaterial3: true,
+    );
+    material.ThemeData materialDark = material.ThemeData(
+      colorScheme: corePalette.toColorScheme(brightness: Brightness.dark),
+      useMaterial3: true,
+    );
+    cupertino.CupertinoThemeData cupertinoTheme = cupertino.CupertinoThemeData(
+      // Using the middle tone here.
+      // Possible values: 0, 10 ,20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100
+      // Docs on possible values: https://pub.dev/documentation/material_color_utilities/0.2.0/palettes_tonal_palette/TonalPalette/commonTones-constant.html
+      // primaryColor: Color(corePalette.primary.get(50)),
+      primaryColor: Color(lightScheme.primary),
+      primaryContrastingColor: Color(lightScheme.onPrimary),
+      scaffoldBackgroundColor: Color(lightScheme.background),
+      barBackgroundColor: Color(lightScheme.primaryContainer),
+      brightness: Brightness.light,
+    );
+    fluent.FluentThemeData fluentLightTheme = fluent.FluentThemeData(
+      
+    );
+  } */
+
   final material.ThemeData? materialLightTheme;
   final material.ThemeData? materialDarkTheme;
   final material.ThemeData? materialHighContrastLightTheme;
