@@ -8,9 +8,9 @@ import 'package:yaru/yaru.dart' as yaru;
 
 class AdaptiveTheme {
   const AdaptiveTheme({
-    this.materialTheme,
+    this.materialLightTheme,
     this.materialDarkTheme,
-    this.materialHighContrastTheme,
+    this.materialHighContrastLightTheme,
     this.materialHighContrastDarkTheme,
     this.cupertinoTheme,
     this.fluentTheme,
@@ -22,9 +22,9 @@ class AdaptiveTheme {
   });
 
   static final AdaptiveTheme defaultTheme = AdaptiveTheme(
-    materialTheme: material.ThemeData.light(useMaterial3: true),
+    materialLightTheme: material.ThemeData.light(useMaterial3: true),
     materialDarkTheme: material.ThemeData.dark(useMaterial3: true),
-    materialHighContrastTheme: material.ThemeData(
+    materialHighContrastLightTheme: material.ThemeData(
       colorScheme: const material.ColorScheme.highContrastLight(),
       useMaterial3: true,
     ),
@@ -41,9 +41,9 @@ class AdaptiveTheme {
     yaruDarkTheme: yaru.yaruDark,
   );
 
-  final material.ThemeData? materialTheme;
+  final material.ThemeData? materialLightTheme;
   final material.ThemeData? materialDarkTheme;
-  final material.ThemeData? materialHighContrastTheme;
+  final material.ThemeData? materialHighContrastLightTheme;
   final material.ThemeData? materialHighContrastDarkTheme;
 
   final cupertino.CupertinoThemeData? cupertinoTheme;
