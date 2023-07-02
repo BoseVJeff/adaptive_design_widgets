@@ -23,6 +23,12 @@ class AdaptiveTheme {
     this.yaruHighContrastDarkTheme,
   });
 
+  /// The default, stock-ish AdaptiveTheme.
+  /// It aims be as explicity defined as is reasonably possible.
+  ///
+  /// This is a best effort attempt to create a theme that is stock-ish in appearence universally.
+  ///
+  /// The basic focus here is on textstyles
   static final AdaptiveTheme defaultTheme = AdaptiveTheme(
     materialLightTheme: material.ThemeData.light(useMaterial3: true),
     materialDarkTheme: material.ThemeData.dark(useMaterial3: true),
