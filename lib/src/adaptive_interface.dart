@@ -1,7 +1,12 @@
 import 'package:adaptive_design_widgets/adaptive_design_widgets.dart';
 import 'package:flutter/widgets.dart';
 
-typedef AdaptiveIconImplementation = Widget Function({
+import 'package:font_awesome_flutter/font_awesome_flutter.dart' as fa;
+import 'package:macos_ui/macos_ui.dart' as macos;
+
+typedef AdaptiveIconImplementation = Widget Function();
+
+/* typedef AdaptiveIconImplementation = Widget Function({
   double? size,
   double? fill,
   double? weight,
@@ -11,7 +16,7 @@ typedef AdaptiveIconImplementation = Widget Function({
   List<Shadow>? shadows,
   String? semanticLabel,
   TextDirection? textDirection,
-});
+}); */
 
 /// Abstract interface for an Adaptive widget. Depends on [DesignSystem].
 ///
@@ -81,7 +86,23 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
     this.shadows,
     this.semanticLabel,
     this.textDirection,
-  });
+  }) : _isFilled = false;
+
+  /// The thicker icon
+  const AdaptiveIconInterface.filled({
+    super.key,
+    this.fill,
+    this.size,
+    this.weight,
+    this.grade,
+    this.opticalSize,
+    this.color,
+    this.shadows,
+    this.semanticLabel,
+    this.textDirection,
+  }) : _isFilled = true;
+
+  final bool _isFilled;
 
   final double? fill;
   final double? size;
@@ -93,94 +114,29 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
   final String? semanticLabel;
   final TextDirection? textDirection;
 
-  Widget materialIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget materialSymbolsIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget cupertinoIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget fluentIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget macosIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget msFluentIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget yaruIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
-  Widget fontAwesomeIcon({
-    double? size,
-    double? fill,
-    double? weight,
-    double? grade,
-    double? opticalSize,
-    Color? color,
-    List<Shadow>? shadows,
-    String? semanticLabel,
-    TextDirection? textDirection,
-  });
+  IconData materialIcon(double? size);
+  IconData materialIconFilled(double? size);
+
+  IconData materialSymbolsIcon(double? size);
+  IconData materialSymbolsIconFilled(double? size);
+
+  IconData cupertinoIcon(double? size);
+  IconData cupertinoIconFilled(double? size);
+
+  IconData fluentIcon(double? size);
+  IconData fluentIconFilled(double? size);
+
+  IconData macosIcon(double? size) => cupertinoIcon(size);
+  IconData macosIconFilled(double? size) => cupertinoIconFilled(size);
+
+  IconData msFluentIcon(double? size);
+  IconData msFluentIconFilled(double? size);
+
+  IconData yaruIcon(double? size);
+  IconData yaruIconFilled(double? size);
+
+  IconData fontAwesomeIcon(double? size);
+  IconData fontAwesomeIconFilled(double? size);
 
   @override
   Widget build(BuildContext context) {
@@ -189,19 +145,10 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
       builder: (_, value, __) {
         switch (value) {
           case IconSystem.cupertinoIcons:
-            return cupertinoIcon(
-              size: size,
-              fill: fill,
-              weight: weight,
-              grade: grade,
-              opticalSize: opticalSize,
-              color: color,
-              shadows: shadows,
-              semanticLabel: semanticLabel,
-              textDirection: textDirection,
-            );
+            return _cupertinoIconBuilder();
           case IconSystem.fluentIcons:
-            return fluentIcon(
+            return Icon(
+              (_isFilled) ? fluentIconFilled(size) : fluentIcon(size),
               size: size,
               fill: fill,
               weight: weight,
@@ -213,31 +160,24 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
               textDirection: textDirection,
             );
           case IconSystem.fontAwesomeIcons:
-            return fontAwesomeIcon(
+            return fa.FaIcon(
+              (_isFilled) ? fontAwesomeIconFilled(size) : fontAwesomeIcon(size),
               size: size,
-              fill: fill,
-              weight: weight,
-              grade: grade,
-              opticalSize: opticalSize,
               color: color,
-              shadows: shadows,
               semanticLabel: semanticLabel,
               textDirection: textDirection,
             );
           case IconSystem.macosIcons:
-            return macosIcon(
+            return macos.MacosIcon(
+              (_isFilled) ? cupertinoIconFilled(size) : cupertinoIcon(size),
               size: size,
-              fill: fill,
-              weight: weight,
-              grade: grade,
-              opticalSize: opticalSize,
               color: color,
-              shadows: shadows,
               semanticLabel: semanticLabel,
               textDirection: textDirection,
             );
           case IconSystem.materialIcons:
-            return materialIcon(
+            return Icon(
+              (_isFilled) ? materialIconFilled(size) : materialIcon(size),
               size: size,
               fill: fill,
               weight: weight,
@@ -249,7 +189,10 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
               textDirection: textDirection,
             );
           case IconSystem.materialSymbols:
-            return materialSymbolsIcon(
+            return Icon(
+              (_isFilled)
+                  ? materialSymbolsIconFilled(size)
+                  : materialSymbolsIcon(size),
               size: size,
               fill: fill,
               weight: weight,
@@ -261,7 +204,8 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
               textDirection: textDirection,
             );
           case IconSystem.msFluentIcons:
-            return msFluentIcon(
+            return Icon(
+              (_isFilled) ? msFluentIconFilled(size) : msFluentIcon(size),
               size: size,
               fill: fill,
               weight: weight,
@@ -273,7 +217,8 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
               textDirection: textDirection,
             );
           case IconSystem.yaruIcons:
-            return yaruIcon(
+            return Icon(
+              (_isFilled) ? yaruIconFilled(size) : yaruIcon(size),
               size: size,
               fill: fill,
               weight: weight,
@@ -286,14 +231,84 @@ abstract class AdaptiveIconInterface extends StatelessWidget {
             );
           case IconSystem.defaultIcons:
             return _DefaultIcons(
-              cupertinoImpl: cupertinoIcon,
-              fluentImpl: msFluentIcon,
-              macosImpl: macosIcon,
-              materialImpl: materialIcon,
-              yaruImpl: yaruIcon,
+              cupertinoImpl: _cupertinoIconBuilder,
+              fluentImpl: _msFluentIconBuilder,
+              macosImpl: _macosIconBuilder,
+              materialImpl: _materialIconBuilder,
+              yaruImpl: _yaruIconBuilder,
             );
         }
       },
+    );
+  }
+
+  Widget _cupertinoIconBuilder() {
+    return Icon(
+      (_isFilled) ? cupertinoIconFilled(size) : cupertinoIcon(size),
+      size: size,
+      fill: fill,
+      weight: weight,
+      grade: grade,
+      opticalSize: opticalSize,
+      color: color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+    );
+  }
+
+  Widget _msFluentIconBuilder() {
+    return Icon(
+      (_isFilled) ? msFluentIconFilled(size) : msFluentIcon(size),
+      size: size,
+      fill: fill,
+      weight: weight,
+      grade: grade,
+      opticalSize: opticalSize,
+      color: color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+    );
+  }
+
+  Widget _macosIconBuilder() {
+    return macos.MacosIcon(
+      (_isFilled) ? cupertinoIconFilled(size) : cupertinoIcon(size),
+      size: size,
+      color: color,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+    );
+  }
+
+  Widget _materialIconBuilder() {
+    return Icon(
+      (_isFilled) ? materialIconFilled(size) : materialIcon(size),
+      size: size,
+      fill: fill,
+      weight: weight,
+      grade: grade,
+      opticalSize: opticalSize,
+      color: color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+    );
+  }
+
+  Widget _yaruIconBuilder() {
+    return Icon(
+      (_isFilled) ? yaruIconFilled(size) : yaruIcon(size),
+      size: size,
+      fill: fill,
+      weight: weight,
+      grade: grade,
+      opticalSize: opticalSize,
+      color: color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
     );
   }
 }
