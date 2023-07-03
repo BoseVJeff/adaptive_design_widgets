@@ -73,6 +73,9 @@ class YaruCompactScaffold extends StatelessWidget {
         title: title,
       ),
       body: yaru.YaruNavigationPage(
+        length: length,
+        initialIndex: currentIndex,
+        onSelected: onSelected,
         itemBuilder: navigationRailItemBuilder,
         pageBuilder: (context, index) {
           return material.Scaffold(
