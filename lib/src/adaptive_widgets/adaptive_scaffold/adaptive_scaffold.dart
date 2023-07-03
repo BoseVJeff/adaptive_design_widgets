@@ -27,7 +27,7 @@ class AdaptiveScaffold extends AdaptiveWidgetInterface {
 
   /// Whether to use compact mode or not.
   ///
-  /// Currently, this only affects [DesignSystem.yaru].
+  /// Currently, this only affects [DesignSystem.yaru] and [DesignSystem.material].
   /// [compactMode]==true results in a [material.Scaffold] being used instead of [yaru.YaruMasterDetailPage].
   final bool compactMode;
 
