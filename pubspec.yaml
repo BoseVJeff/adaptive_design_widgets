@@ -78,7 +78,7 @@ flutter:
       fonts:
         - asset: fonts/SF-Compact/SF-Compact.ttf
           style: normal
-        - asset: fonts/SF-Compact/SF-Comapct-Italic.ttf
+        - asset: fonts/SF-Compact/SF-Compact-Italic.ttf
           style: italic
     - family: SF Mono
       fonts:
