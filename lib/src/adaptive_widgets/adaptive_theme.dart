@@ -30,21 +30,64 @@ class AdaptiveTheme {
   ///
   /// The basic focus here is on textstyles
   static final AdaptiveTheme defaultTheme = AdaptiveTheme(
-    materialLightTheme: material.ThemeData.light(useMaterial3: true),
-    materialDarkTheme: material.ThemeData.dark(useMaterial3: true),
+    materialLightTheme: material.ThemeData(
+      colorScheme: const material.ColorScheme.light(),
+      typography: material.Typography.material2021(),
+      fontFamily: 'Roboto',
+      package: 'adaptive_design_widgets',
+      useMaterial3: true,
+    ),
+    materialDarkTheme: material.ThemeData(
+      colorScheme: const material.ColorScheme.dark(),
+      typography: material.Typography.material2021(),
+      fontFamily: 'Roboto',
+      useMaterial3: true,
+    ),
     materialHighContrastLightTheme: material.ThemeData(
       colorScheme: const material.ColorScheme.highContrastLight(),
+      typography: material.Typography.material2021(),
+      fontFamily: 'Roboto',
       useMaterial3: true,
     ),
     materialHighContrastDarkTheme: material.ThemeData(
       colorScheme: const material.ColorScheme.highContrastDark(),
+      typography: material.Typography.material2021(),
+      fontFamily: 'Roboto',
       useMaterial3: true,
     ),
-    cupertinoTheme: const cupertino.CupertinoThemeData(),
-    fluentTheme: fluent.FluentThemeData(brightness: Brightness.light),
-    fluentDarkTheme: fluent.FluentThemeData(brightness: Brightness.dark),
-    macosTheme: macos.MacosThemeData.light(),
+    cupertinoTheme: const cupertino.CupertinoThemeData(
+      textTheme: cupertino.CupertinoTextThemeData(
+        textStyle: cupertino.TextStyle(
+          fontFamily: 'SF Pro',
+          package: 'adaptive_design_widgets',
+        ),
+      ),
+    ),
+    fluentTheme: fluent.FluentThemeData(
+        brightness: Brightness.light,
+        resources: const fluent.ResourceDictionary.light(),
+        typography: fluent.Typography.fromBrightness(
+          brightness: Brightness.light,
+        ),
+        fontFamily: 'Segoe-UI-VF'),
+    fluentDarkTheme: fluent.FluentThemeData(
+        brightness: Brightness.dark,
+        resources: const fluent.ResourceDictionary.dark(),
+        typography: fluent.Typography.fromBrightness(
+          brightness: Brightness.dark,
+        ),
+        fontFamily: 'Segoe-UI-VF'),
+    // TODO: Use MacosTypography.merge or similar to set font family.
+    // This is incomplete because it seems to need to be set per possible textStyle.
+    macosTheme: macos.MacosThemeData(
+      brightness: Brightness.light,
+      typography: macos.MacosTypography.black,
+    ),
+    // TODO: Use MacosTypography.merge or similar to set font family.
+    // This is incomplete because it seems to need to be set per possible textStyle.
     macosDarkTheme: macos.MacosThemeData.dark(),
+    // TODO: Implement custom font family here.
+    // This is pending as the reeavnt fonr has not been sourced.
     yaruTheme: yaru.yaruLight,
     yaruDarkTheme: yaru.yaruDark,
     yaruHighContrastLightTheme: yaru.yaruHighContrastLight,
