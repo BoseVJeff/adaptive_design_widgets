@@ -65,9 +65,11 @@ flutter:
   # https://flutter.dev/custom-fonts/#from-packages
 
   fonts:
-    # Weights mapped according to https://stackoverflow.com/a/10909252
+    # ~Weights mapped according to https://stackoverflow.com/a/10909252~
+    # Weights mapped according to the mappings in the SF Pro presets included as comments.
     # Regular Apple fonts
     # Fonts taken from https://developer.apple.com/fonts/
+    # Fonts analysed using https://typetrials.com/
     - family: SF Pro
       fonts:
         - asset: fonts/SF-Pro/SF-Pro.ttf
@@ -85,9 +87,11 @@ flutter:
         - asset: fonts/SF-Mono/SF-Mono-Light.otf
           style: normal
           weight: 300
+          # weight: 274
         - asset: fonts/SF-Mono/SF-Mono-LightItalic.otf
           style: italic
           weight: 300
+          # weight: 274
         - asset: fonts/SF-Mono/SF-Mono-Regular.otf
           style: normal
           weight: 400
@@ -97,15 +101,19 @@ flutter:
         - asset: fonts/SF-Mono/SF-Mono-Medium.otf
           style: normal
           weight: 500
+          # weight: 510
         - asset: fonts/SF-Mono/SF-Mono-MediumItalic.otf
           style: italic
           weight: 500
+          # weight: 510
         - asset: fonts/SF-Mono/SF-Mono-Semibold.otf
           style: normal
           weight: 600
+          # weight: 590
         - asset: fonts/SF-Mono/SF-Mono-SemiboldItalic.otf
           style: italic
           weight: 600
+          # weight: 590
         - asset: fonts/SF-Mono/SF-Mono-Bold.otf
           style: normal
           weight: 700
@@ -115,9 +123,11 @@ flutter:
         - asset: fonts/SF-Mono/SF-Mono-Heavy.otf
           style: normal
           weight: 900
+          # weight: 860
         - asset: fonts/SF-Mono/SF-Mono-HeavyItalic.otf
           style: italic
           weight: 900
+          # weight: 860
     - family: Roboto
     # Font and font weights taken from https://fonts.google.com/specimen/Roboto
       fonts:
