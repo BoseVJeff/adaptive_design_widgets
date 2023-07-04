@@ -117,7 +117,7 @@ class _HomePageState extends material.State<HomePage> {
           Text('$_counter'),
           AdaptiveIconutton(
             onPressed: _incrementCounter,
-            icon: AdaptiveIcon.designIcon(),
+            icon: AdaptiveIcon.plusIcon(),
           ),
         ],
       ),
@@ -140,7 +140,8 @@ class SettingsPage extends StatelessWidget {
               context,
               DesignSystem.values[index],
             ),
-            icon: Text(DesignSystem.values[index].name),
+            // icon: Text(DesignSystem.values[index].name),
+            icon: AdaptiveIcon.getIconOf(DesignSystem.values[index]),
             tooltip: DesignSystem.values[index].name,
           ),
         ),
