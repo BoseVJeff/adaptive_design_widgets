@@ -101,20 +101,20 @@ class AdaptiveIconutton extends AdaptiveWidgetInterface {
 
   @override
   Widget macosWidgetBuilder(BuildContext context) {
-    return macos.PushButton(
-      // Can be large or small
-      buttonSize: macos.ButtonSize.small,
-      // alignment: ,
-      // borderRadius: ,
-      color: color,
+    return macos.MacosIconButton(
       disabledColor: disabledColor,
-      // isSecondary: ,
       mouseCursor: mouseCursor ?? SystemMouseCursors.basic,
       onPressed: onPressed,
       padding: padding,
-      child: icon,
+      icon: icon,
+      alignment: alignment ?? Alignment.center,
+      // backgroundColor: ,
+      // borderRadius: ,
+      // boxConstraints: ,
+      hoverColor: hoverColor,
       // pressedOpacity: ,
-      // semanticLabel: ,
+      // semanticLabel: sema,
+      // shape: ,
     );
   }
 
