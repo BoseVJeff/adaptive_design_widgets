@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:adaptive_design_widgets/src/adaptive_widgets/adaptive_icon/design_icon.dart';
+import 'package:adaptive_design_widgets/src/adaptive_widgets/adaptive_icon/plus_icon.dart';
 
 class AdaptiveIcon {
   AdaptiveIcon._();
@@ -17,6 +18,29 @@ class AdaptiveIcon {
     final TextDirection? textDirection,
   }) =>
       DesignIcon(
+        color: color,
+        fill: fill,
+        grade: grade,
+        opticalSize: opticalSize,
+        semanticLabel: semanticLabel,
+        shadows: shadows,
+        size: size,
+        textDirection: textDirection,
+        weight: weight,
+      );
+
+  static plusIcon({
+    final double? fill,
+    final double? size,
+    final double? weight,
+    final double? grade,
+    final double? opticalSize,
+    final Color? color,
+    final List<Shadow>? shadows,
+    final String? semanticLabel,
+    final TextDirection? textDirection,
+  }) =>
+      PlusIcon(
         color: color,
         fill: fill,
         grade: grade,
