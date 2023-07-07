@@ -50,44 +50,46 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+ValueNotifier<bool> _compactModeEnabled = ValueNotifier<bool>(false);
+
 class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveScaffold(
-      compactMode: true,
-      title: Text(widget.title),
-      /* appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
-      ), */
-      currentIndex: _currentPageIndex,
-      childBuilder: (_, int index) {
-        if (index == 1) {
-          return const SettingsPage();
-        } else {
-          return const HomePage();
-        }
-      },
-      navigationItems: [
-        AdaptiveNavigationItem(
-          icon: AdaptiveIcon.designIcon(),
-          label: 'Home Page',
-        ),
-        AdaptiveNavigationItem(
-          icon: AdaptiveIcon.designIcon(color: const Color(0xFF00FF00)),
-          label: 'Settings Page',
-        ),
-      ],
-      onSelected: (int? index) {
-        if (index != null) {
-          setState(() {
-            _currentPageIndex = index;
-          });
-        }
-      },
-    );
+    return ValueListenableBuilder(
+        valueListenable: _compactModeEnabled,
+        builder: (context, value, child) {
+          return AdaptiveScaffold(
+            compactMode: value,
+            title: Text(widget.title),
+            currentIndex: _currentPageIndex,
+            childBuilder: (_, int index) {
+              if (index == 1) {
+                return const SettingsPage();
+              } else {
+                return const HomePage();
+              }
+            },
+            navigationItems: [
+              AdaptiveNavigationItem(
+                icon: AdaptiveIcon.designIcon(),
+                label: 'Home Page',
+              ),
+              AdaptiveNavigationItem(
+                icon: AdaptiveIcon.designIcon(color: const Color(0xFF00FF00)),
+                label: 'Settings Page',
+              ),
+            ],
+            onSelected: (int? index) {
+              if (index != null) {
+                setState(() {
+                  _currentPageIndex = index;
+                });
+              }
+            },
+          );
+        });
   }
 }
 
@@ -131,20 +133,39 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Wrap(
-        alignment: WrapAlignment.spaceAround,
-        children: List<AdaptiveIconutton>.generate(
-          DesignSystem.values.length,
-          (index) => AdaptiveIconutton(
-            onPressed: () => DesignAncestor.setDesignSystemOf(
-              context,
-              DesignSystem.values[index],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          AdaptiveListTile(
+            title: const Text('Design System'),
+            subtitle: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              children: List<AdaptiveIconutton>.generate(
+                DesignSystem.values.length,
+                (index) => AdaptiveIconutton(
+                  onPressed: () => DesignAncestor.setDesignSystemOf(
+                    context,
+                    DesignSystem.values[index],
+                  ),
+                  // icon: Text(DesignSystem.values[index].name),
+                  icon: AdaptiveIcon.getIconOf(DesignSystem.values[index]),
+                  tooltip: DesignSystem.values[index].name,
+                ),
+              ),
             ),
-            // icon: Text(DesignSystem.values[index].name),
-            icon: AdaptiveIcon.getIconOf(DesignSystem.values[index]),
-            tooltip: DesignSystem.values[index].name,
           ),
-        ),
+          ValueListenableBuilder(
+            valueListenable: _compactModeEnabled,
+            builder: (context, value, child) => AdaptiveListTile(
+              title: Text('Comapct Mode Enabled: $value'),
+              subtitle: AdaptiveSwitch(
+                value: value,
+                onChanged: (bool newValue) =>
+                    _compactModeEnabled.value = newValue,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
